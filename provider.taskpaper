@@ -1,0 +1,15 @@
+
+Implementing the Custom File System Provider Class:
+- Create a custom file system provider class, such as MyFileSystemProvider, that extends the java.nio.file.spi.FileSystemProvider class.
+- Define a URI scheme such as jar for the file system provider. The getScheme method should return the URI scheme of this provider.
+- Create an internal cache to keep track of file systems created by this provider.
+- Implement the newFileSystem method. The method will create a new custom file system at the specified path and add the file system to cache. This method should throw a java.nio.file.FileSystemAlreadyExistsException exception if a file system already exists at the specified path.
+- Implement the getFileSystem method. This method should search the cache and return a previously created instance of a file system that corresponds to the given URI.
+- Implement the newFileChannel method or the newAsynchronousFileChannel method depending on the requirements of your file system provider. This method should return a FileChannel object that allows a file to be read or written in the file system.
+
+Implementing the Custom File System Class:
+- Create a class, such as MyFileSystem, that extends the java.nio.file.FileSystem class.
+- Implement the methods of your file system class depending on the characteristics of the desired file system. Some characteristics of a file system are as follows:
+    - Number of roots – A file system can have a single hierarchy of files with one root, or multiple hierarchies.
+    - Read and write access – A file system can be read-only or read/write.
+    - File store – A file system requires an underlying file store. The attributes that can be set for a file will vary depending on the underlying file store.
